@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.yxy.lib_common.ToastUtils
 
 
 /**
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             textView.text = "点击后的值:app"
+            ToastUtils.show(this, "666")
         }
 
     }
