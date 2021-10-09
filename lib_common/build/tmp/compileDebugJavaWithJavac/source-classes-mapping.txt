@@ -1,2 +1,0 @@
-com/yxy/lib_common/BuildConfig.java
- com.yxy.lib_common.BuildConfig

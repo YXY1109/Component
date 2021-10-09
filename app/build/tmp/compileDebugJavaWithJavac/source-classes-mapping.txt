@@ -1,2 +1,0 @@
-com/yxy/component/BuildConfig.java
- com.yxy.component.BuildConfig
