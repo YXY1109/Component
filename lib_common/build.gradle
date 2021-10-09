@@ -1,25 +1,20 @@
-def isComponent = rootProject.ext.isComponent
-if (isComponent) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
-apply plugin: 'kotlin-android'
 
-def appId = rootProject.ext.appId
 def application = rootProject.ext.application
-def dependenciesImport = rootProject.ext.dependenciesImport
-//def version_code = rootProject.ext.versionCode
-//def version_name = rootProject.ext.versionName
+def project_appId = rootProject.ext.appId.app
+
+def dependenciesImp = rootProject.ext.dependenciesImport
+def dependenciesKapt = rootProject.ext.dependenciesKapt
 
 
 android {
     compileSdk application.compileSdkVersion
 
     defaultConfig {
-        if (isComponent) {
-            applicationId appId.common
-        }
         minSdk application.minSdkVersion
         targetSdk application.targetSdkVersion
         versionCode 1
@@ -27,6 +22,16 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        //将当前构建环境状态写入 BuildConfig 文件中
+        buildConfigField("boolean", "IS_COMPONENT", String.valueOf(isComponent))
+        buildConfigField("String", "APP_ID", "\"" + String.valueOf(project_appId) + "\"")
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -47,5 +52,7 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    dependenciesImport.each { k, v -> implementation(v) }
+
+    dependenciesImp.each { k, v -> implementation(v) }
+    dependenciesKapt.each { k, v -> kapt(v) }
 }
