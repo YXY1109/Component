@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.yxy.component.R
@@ -44,6 +46,40 @@ class MainActivity : AppCompatActivity() {
 //            RouterManager.startActivity(this, "user/UserMainActivity")
 
             ARouter.getInstance().build("/user/UserMainActivity").navigation()
+        }
+
+
+        findViewById<Button>(R.id.btn_user_fragment).setOnClickListener {
+
+            ARouter.getInstance().build("/user/UserFragment").navigation()?.apply {
+                if (this is Fragment) {
+                    val beginTransaction = supportFragmentManager.beginTransaction()
+                    beginTransaction.replace(R.id.fl_fragment, this)
+                    beginTransaction.commit()
+                }
+            }
+
+        }
+
+        findViewById<Button>(R.id.btn_login).setOnClickListener {
+
+//            ARouter.getInstance().build("user/UserService").navigation()?.apply {
+//                if (this is IUserService2) {
+//                    Toast.makeText(
+//                        this@AppMainActivity,
+//                        "登录状态：${this.isLogin()}",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
+
+            RouterManager.getUserService(this)?.apply {
+                Toast.makeText(
+                    this@MainActivity, "登录状态：${this.isLogin()}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
         }
 
     }
