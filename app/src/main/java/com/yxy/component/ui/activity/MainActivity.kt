@@ -17,22 +17,33 @@ import com.yxy.module_user.ui.activity.UserMainActivity
 
 
 /**
- *
  * 参考文章1:雷小歪：
  * https://juejin.cn/post/7005483236117725215
  * https://juejin.cn/post/7005486039842324488
  * https://juejin.cn/post/7009215213362741255
+ * https://github.com/cn-ljb/ComponentExample
  *
+ * 重要，需认真阅读
+ * https://juejin.cn/post/6881116198889586701
+ * https://github.com/hufeiyang/Android-AppLifecycleMgr
  *
- * https://juejin.cn/post/6881116198889586701#heading-21
- * https://juejin.cn/post/6866628586414997512#heading-6
+ *  一个 Android MVVM 组件化架构框架
+ * https://juejin.cn/post/6866628586414997512
+ * https://github.com/Quyunshuo/AndroidBaseFrameMVVM
+ *
  * https://juejin.cn/post/7015882134795583519
  *  功能组件：lib_xxx
  *  业务组件：module_xxx
+ *
+ * 基础封装：
  * https://juejin.cn/post/6989918599007698957
+ * https://juejin.cn/post/6995082240287850527
+ *
+ * 不错
  * https://juejin.cn/post/6981337095331659783
- * https://github.com/Quyunshuo/AndroidBaseFrameMVVM
- * https://github.com/cn-ljb/ComponentExample
+ *
+ * 系列文章
+ * https://www.jianshu.com/p/d0f5cf304fa4
  *
  * 协程：
  * https://juejin.cn/post/6950616789390721037
