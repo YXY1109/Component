@@ -27,7 +27,7 @@ ext {
     ]
     //各模块AppId 字典配置
     appId = [
-            app   : "com.yxy.component",
+            app : "com.yxy.component",
             user: "com.yxy.component.user"
     ]
 

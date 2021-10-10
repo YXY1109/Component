@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.yxy.module_user">
+    
+  <application android:allowBackup="true" android:supportsRtl="true" android:theme="@style/Theme.Component">
+        
+    <activity android:name=".UserActivity" android:exported="true"/>
+      
+  </application>
+  
+</manifest>

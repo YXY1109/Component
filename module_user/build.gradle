@@ -12,6 +12,7 @@ if (isComponent) {
 }
 apply plugin: 'kotlin-android'
 
+rootProject.ext.manifestRelease(project.name)
 
 android {
     compileSdk 30
@@ -41,6 +42,16 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main {
+            if (isComponent) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/_Manifest/AndroidManifest.xml'
+            }
+        }
     }
 }
 
