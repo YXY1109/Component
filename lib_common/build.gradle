@@ -1,29 +1,30 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
 
-def appId = rootProject.ext.appId
 def application = rootProject.ext.application
-def dependenciesImport = rootProject.ext.dependenciesImport
+def project_appId = rootProject.ext.appId.app
 
-def isComponent = rootProject.ext.isComponent
+def dependenciesImp = rootProject.ext.dependenciesImport
+def dependenciesKapt = rootProject.ext.dependenciesKapt
 
 android {
     compileSdk application.compileSdkVersion
 
     defaultConfig {
-        applicationId appId.app
         minSdk application.minSdkVersion
         targetSdk application.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
 
         //将当前构建环境状态写入 BuildConfig 文件中
-        buildConfigField("boolean", "isComponent", String.valueOf(isComponent))
+        buildConfigField("boolean", "IS_COMPONENT", String.valueOf(isComponent))
+        buildConfigField("String", "APP_ID", "\"" + String.valueOf(project_appId) + "\"")
 
         kapt {
             arguments {
@@ -48,13 +49,9 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':lib_common')
 
-    dependenciesImport.each { k, v -> implementation(v) }
+    dependenciesImp.each { k, v -> implementation(v) }
     dependenciesKapt.each { k, v -> kapt(v) }
-
-    if (!isComponent) {
-        implementation project(path: ':module_user')
-    }
 }

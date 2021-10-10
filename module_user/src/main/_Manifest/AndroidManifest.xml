@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.yxy.module_user">
+<?xml version="1.0" encoding="UTF-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="com.yxy.module_user">
     
   <application android:allowBackup="true" android:supportsRtl="true" android:theme="@style/Theme.Component">
         
-    <activity android:name=".UserActivity" android:exported="true"/>
+    <activity android:name=".ui.activity.UserMainActivity" android:exported="true" android:screenOrientation="portrait"/>
+        
+    <provider android:name="androidx.startup.InitializationProvider" android:authorities="${applicationId}.androidx-startup" android:exported="false" tools:node="merge">
+            
+      <meta-data android:name="com.yxy.module_user.startup.UserInitializer" android:value="androidx.startup"/>
+          
+    </provider>
       
   </application>
   

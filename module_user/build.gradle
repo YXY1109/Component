@@ -11,6 +11,7 @@ if (isComponent) {
     apply plugin: 'com.android.library'
 }
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 rootProject.ext.manifestRelease(project.name)
 
@@ -28,6 +29,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -58,5 +65,8 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':lib_common')
+
     dependenciesImport.each { k, v -> implementation(v) }
+    dependenciesKapt.each { k, v -> kapt(v) }
 }

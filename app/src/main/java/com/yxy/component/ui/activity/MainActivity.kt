@@ -1,10 +1,15 @@
 package com.yxy.component.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.yxy.component.R
+import com.yxy.lib_common.router.RouterManager
+import com.yxy.module_user.ui.activity.UserMainActivity
 
 //import com.yxy.lib_common.ToastUtils
 
@@ -20,6 +25,8 @@ import com.yxy.component.R
  *
  *
  */
+
+@Route(path = "/app/MainActivity", group = "app")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +36,14 @@ class MainActivity : AppCompatActivity() {
         var button = findViewById<Button>(R.id.button)
 
         button.setOnClickListener {
-            textView.text = "点击后的值:app666"
+//            textView.text = "点击后的值:app666"
 //            ToastUtils.show(this, "666")
+//            val intent = Intent(this, UserMainActivity::class.java)
+//            startActivity(intent)
+
+//            RouterManager.startActivity(this, "user/UserMainActivity")
+
+            ARouter.getInstance().build("/user/UserMainActivity").navigation()
         }
 
     }
