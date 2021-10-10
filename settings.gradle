@@ -8,5 +8,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Component"
 include ':app'
-include ':lib_common'
-include ':module_user'

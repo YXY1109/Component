@@ -42,10 +42,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':lib_common')
     dependenciesImport.each { k, v -> implementation(v) }
-
-    if (!isComponent) {
-        implementation project(path: ':module_user')
-    }
 }
