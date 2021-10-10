@@ -10,14 +10,18 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.yxy.component.R
-import com.yxy.lib_common.router.RouterManager
+import com.yxy.module_user.router.service.IUserService2
 import com.yxy.module_user.ui.activity.UserMainActivity
 
 //import com.yxy.lib_common.ToastUtils
 
 
 /**
- * 参考文章1：https://juejin.cn/post/7005483236117725215
+ *
+ * 参考文章1:雷小歪：
+ * https://juejin.cn/post/7005483236117725215
+ * https://juejin.cn/post/7005486039842324488
+ * https://juejin.cn/post/7009215213362741255
  *
  *
  * 参考文章2：https://juejin.cn/post/7015882134795583519
@@ -63,22 +67,16 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btn_login).setOnClickListener {
 
-//            ARouter.getInstance().build("user/UserService").navigation()?.apply {
-//                if (this is IUserService2) {
-//                    Toast.makeText(
-//                        this@AppMainActivity,
-//                        "登录状态：${this.isLogin()}",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            }
-
-            RouterManager.getUserService(this)?.apply {
-                Toast.makeText(
-                    this@MainActivity, "登录状态：${this.isLogin()}",
-                    Toast.LENGTH_SHORT
-                ).show()
+            ARouter.getInstance().build("/user/UserService").navigation()?.apply {
+                if (this is IUserService2) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "登录状态：${this.isLogin()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
+
 
         }
 

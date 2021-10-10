@@ -3,12 +3,6 @@
   <application android:allowBackup="true" android:supportsRtl="true" android:theme="@style/Theme.Component">
         
     <activity android:name=".ui.activity.UserMainActivity" android:exported="true" android:screenOrientation="portrait"/>
-        
-    <provider android:name="androidx.startup.InitializationProvider" android:authorities="${applicationId}.androidx-startup" android:exported="false" tools:node="merge">
-            
-      <meta-data android:name="com.yxy.module_user.startup.UserInitializer" android:value="androidx.startup"/>
-          
-    </provider>
       
   </application>
   

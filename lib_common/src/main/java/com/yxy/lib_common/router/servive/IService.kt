@@ -1,3 +1,3 @@
-package com.yxy.lib_common.router.servive
-
-interface IService
+//package com.yxy.lib_common.router.servive
+//
+//interface IUserService

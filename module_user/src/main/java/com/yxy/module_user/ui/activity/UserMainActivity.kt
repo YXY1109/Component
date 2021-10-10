@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.yxy.lib_common.router.RouterManager
 import com.yxy.module_user.R
 
 //import com.yxy.lib_common.ToastUtils
