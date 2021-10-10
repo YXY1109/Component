@@ -1,28 +1,32 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
-
 def appId = rootProject.ext.appId
 def application = rootProject.ext.application
 def dependenciesImport = rootProject.ext.dependenciesImport
 
 def isComponent = rootProject.ext.isComponent
 
+// 2、根据isComponent字段，来确定当前是集成化=false 还是组件化=true
+if (isComponent) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'kotlin-android'
+
+
 android {
-    compileSdk application.compileSdkVersion
+    compileSdk 30
 
     defaultConfig {
-        applicationId appId.app
+        if (isComponent) {
+            applicationId appId.user
+        }
         minSdk application.minSdkVersion
         targetSdk application.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        //将当前构建环境状态写入 BuildConfig 文件中
-        buildConfigField("boolean", "isComponent", String.valueOf(isComponent))
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -41,11 +45,7 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     dependenciesImport.each { k, v -> implementation(v) }
-
-    if (!isComponent) {
-        implementation project(path: ':module_user')
-    }
 }
